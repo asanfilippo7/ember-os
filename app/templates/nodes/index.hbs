@@ -1,2 +1,11 @@
 <h3>Index</h3>
-{{outlet}}
+<ul>
+{{#each model as |node|}}
+    <li>
+        <h3>{{node.title}}</h3>
+        <p>{{node.dateCreated}}</p>
+        <br>
+    </li>  
+{{/each}}
+</ul>
+
