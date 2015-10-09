@@ -10,6 +10,8 @@ export default DS.RESTSerializer.extend({
             record.type = primaryModelClass.modelName;
             record.title = record.attributes.title;
             record.dateCreated = record.attributes.date_created;
+            record.tags = record.attributes.tags;
+            console.log(record.tags);
             normalizedRecords.push(record);
         });
         
@@ -17,5 +19,11 @@ export default DS.RESTSerializer.extend({
         obj[primaryModelClass.modelName] = normalizedRecords;
         
         return this._super(store, primaryModelClass, obj, id, requestType);
+    },
+    
+    normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
+        console.log("getting payload");
+        payload.data.type = primaryModelClass.modelName;
+        return payload;
     }
 });

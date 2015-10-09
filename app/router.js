@@ -6,7 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('nodes', {path: '/'}, function() {});
+  this.route('nodes', {path: '/'}, function() {
+    this.route('node', {path: '/node/:node_id'});
+    this.route('astrology', {path: '/astrology'});
+  });
 });
 
 export default Router;
