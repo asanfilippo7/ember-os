@@ -1,7 +1,11 @@
 import DS from 'ember-data';
 
-export default DS.RESTSerializer.extend({
+export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     isNewSerializerAPI: true,
+    
+    attrs: {
+        tags: {embedded: 'always'}
+    },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
         var normalizedRecords = [];
@@ -11,7 +15,7 @@ export default DS.RESTSerializer.extend({
             record.title = record.attributes.title;
             record.dateCreated = record.attributes.date_created;
             record.tags = record.attributes.tags;
-            console.log(record.tags);
+            console.log(record);
             normalizedRecords.push(record);
         });
         
