@@ -1,1 +1,18 @@
-{{outlet}}
+<h3>All Nodes Tagged {{tagId}}</h3>
+{{#link-to 'nodes'}}All nodes{{/link-to}}
+<ul>
+{{#each model as |node|}}
+    <li>
+       
+        {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+        <p>{{node.dateCreated}}</p>
+        <ul>
+            {{#each node.tags as |tag|}}
+                {{#link-to 'nodes.tag' tag}}<li>{{tag.id}}</li>{{/link-to}}
+            {{/each}}
+        </ul>
+        <br>
+    </li>  
+{{/each}}
+</ul>
+

@@ -8,8 +8,7 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('nodes', {path: '/nodes'}, function() {
     this.route('node', {path: '/node/:node_id'});
-    this.route('tagged', {path: '/tagged'});
-    this.route('tag', {path: '/tag/:tag_id'});
+    this.route('tag', {path: 'tags/:tag_id'});
   });
 });
 

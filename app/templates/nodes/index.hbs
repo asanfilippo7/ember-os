@@ -7,7 +7,7 @@
         <p>{{node.dateCreated}}</p>
         <ul>
             {{#each node.tags as |tag|}}
-                {{#link-to 'nodes.tag' tag}}<li>{{tag.id}}</li>{{/link-to}}
+                {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
             {{/each}}
         </ul>
         <br>
