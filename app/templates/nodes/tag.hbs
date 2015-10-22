@@ -1,11 +1,17 @@
 <h3>All nodes tagged {{tagID}}</h3>
-<ul>
+<ol>
 {{#each model as |node|}}
     <li>
        
         {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
         <p>{{node.dateCreated}}</p>
         <p>Filed under {{tagID}}</p>
+        <br>
+    </li>  
+{{/each}}
+</ol>
+{{#link-to 'nodes'}}Return to all nodes{{/link-to}}
+
 <!--
         <ul>
             {{#each node.tags as |tag|}}
@@ -13,9 +19,3 @@
             {{/each}}
         </ul>
 -->
-        <br>
-    </li>  
-{{/each}}
-</ul>
-{{#link-to 'nodes'}}Return to all nodes{{/link-to}}
-

@@ -1,17 +1,72 @@
-<h3>Index</h3>
+<h3>Sort by: {{#link-to 'nodes.recent'}}Recent nodes{{/link-to}}</h3>
+<!--outermost UL-->
+<ul> 
+{{#each tagList as |tag|}}
+<!--A single tag header-->
+<h3>{{tag.id}}</h3>
+<!--    UL of nodes with this tag-->
+    <ul>
+    {{#each model as |node|}}
+        {{#if node.tags}}
+            <li>
+                {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+                <p>{{node.dateCreated}}</p>
+                <p>Tags:</p>
+                <ul>
+                    {{#each node.tags as |tag|}}
+                        {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+                    {{/each}}
+                </ul>
+                <br>
+            </li>
+        {{/if}}
+    {{/each}}
+    </ul>
+{{/each}}
+</ul>
+<!--outermost UL-->
+
+<!--Untagged nodes-->
 <ul>
+<h3>All untagged nodes:</h3>
 {{#each model as |node|}}
+    {{#unless node.tags}}
     <li>
-       
         {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
         <p>{{node.dateCreated}}</p>
+        <br>
+    </li>
+    {{/unless}}
+{{/each}}
+</ul>
+<!--Untagged nodes-->
+
+
+<!--
+<ul>
+{{#each tagList as |tag|}}
+    <li>{{tag.id}}</li>
+{{/each}}
+</ul>
+    
+<ul>
+<h3>All tagged nodes:</h3>
+{{#each model as |node|}}
+    {{#if node.tags}}
+    <li>
+        {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+        <p>{{node.dateCreated}}</p>
+        <p>Tags:</p>
         <ul>
             {{#each node.tags as |tag|}}
                 {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
             {{/each}}
         </ul>
         <br>
-    </li>  
+    </li>
+    {{/if}}
 {{/each}}
 </ul>
+-->
+
 

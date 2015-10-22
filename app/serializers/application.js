@@ -15,7 +15,6 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
             record.title = record.attributes.title;
             record.dateCreated = record.attributes.date_created;
             record.tags = record.attributes.tags;
-            console.log(record);
             normalizedRecords.push(record);
         });
         

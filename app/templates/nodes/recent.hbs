@@ -1,0 +1,16 @@
+<h3>Recent nodes:</h3>
+<ul>
+{{#each sortedByDate as |node|}}
+    <li>
+        {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+        <p>{{node.dateCreated}}</p>
+        <ul>
+            {{#each node.tags as |tag|}}
+                {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+            {{/each}}
+        </ul>
+        <br>
+    </li>
+{{/each}}
+</ul>
+{{#link-to 'nodes'}}Return to home{{/link-to}}
