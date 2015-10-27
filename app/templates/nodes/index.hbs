@@ -6,21 +6,18 @@
 <h3>{{tag.id}}</h3>
 <!--    UL of nodes with this tag-->
     <ul>
-    {{#each model as |node|}}
-        {{#if node.tags}}
-            <li>
-                {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
-                <p>{{node.dateCreated}}</p>
-                <p>Tags:</p>
-                <ul>
-                    {{#each node.tags as |tag|}}
-                        {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
-                    {{/each}}
-                </ul>
-                <br>
-            </li>
-        {{/if}}
-    {{/each}}
+        {{#each tag.node as |node|}}
+        <li>
+            {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+            <p>{{node.dateCreated}}</p>
+            <ul>
+                {{#each node.tags as |tag|}}
+                    {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+                {{/each}}
+            </ul>
+            <br>
+        </li>
+        {{/each}}
     </ul>
 {{/each}}
 </ul>
