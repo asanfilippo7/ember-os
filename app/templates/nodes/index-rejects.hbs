@@ -1,0 +1,37 @@
+<!--outermost UL-->
+<ul> 
+{{#each tagList as |tag|}}
+<!--A single tag header-->
+<h3>{{tag.id}}</h3>
+<!--    UL of nodes with this tag-->
+    <ul>
+        {{#each tag.node as |node|}}
+        <li>
+            {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+            <p>{{node.dateCreated}}</p>
+            <ul>
+                {{#each node.tags as |tag|}}
+                    {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+                {{/each}}
+            </ul>
+            <br>
+        </li>
+        {{/each}}
+    </ul>
+{{/each}}
+</ul>
+<!--outermost UL-->
+<!--Untagged nodes-->
+<ul>
+<h3>All untagged nodes:</h3>
+{{#each model as |node|}}
+    {{#unless node.tags}}
+    <li>
+        {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+        <p>{{node.dateCreated}}</p>
+        <br>
+    </li>
+    {{/unless}}
+{{/each}}
+</ul>
+<!--Untagged nodes-->
