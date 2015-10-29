@@ -31,6 +31,7 @@ export default Ember.Controller.extend({
         for(var i = 1; i <= this.get('totalPages'); i++) {
             result.push(i);
         }
+        console.log(result);
         return result;
     }.property('totalPages')
 });

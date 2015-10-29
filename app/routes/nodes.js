@@ -16,6 +16,7 @@ export default Ember.Route.extend({
     },
     setupController: function(controller, model) {
         this._super.apply(this, arguments);
-        controller.set('totalPages', model.get('meta.totalPages'));
+        var totalPages = Math.ceil(model.meta.total/model.meta.per_page);
+        controller.set('totalPages', totalPages);
     },
 });

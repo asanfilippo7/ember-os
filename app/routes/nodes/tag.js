@@ -12,12 +12,13 @@ export default Ember.Route.extend({
         if(Ember.isPresent(params.pge)) {
             query.page = params.pge;
         }
-        console.log(query.page);
         return this.get('store').query('node', {filter: {tags: params.tag_id}, page: query.page});
     },
     setupController: function(controller, model) {
         this._super.apply(this, arguments);
-        controller.set('totalPages', model.get('meta.totalPages'));
+        var totalPages = Math.ceil(model.meta.total/model.meta.per_page);
+        controller.set('totalPages', totalPages);
+        controller.set('tagID', model.query.filter.tags);
     }
 });
 

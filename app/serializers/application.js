@@ -20,6 +20,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
         
         var obj = {};
         obj[primaryModelClass.modelName] = normalizedRecords;
+        obj.meta = payload.links.meta;
         
         return this._super(store, primaryModelClass, obj, id, requestType);
     },
