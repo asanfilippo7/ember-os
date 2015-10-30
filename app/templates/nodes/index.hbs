@@ -1,5 +1,5 @@
 {{#if isFirstPage}}
-<h3>Sort by: {{#link-to 'nodes.recent'}}Recent nodes{{/link-to}}</h3>
+<!--<h3>Sort by: {{#link-to 'nodes.recent'}}Recent nodes{{/link-to}}</h3>-->
 {{/if}}
 
 <h3>Search by tag: {{input value=keyword action="search" on="enter"}}</h3>
@@ -12,7 +12,7 @@
 {{#each model as |node|}}
     <li>
         {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
-        <p>{{node.dateCreated}}</p>
+        <p>Last modified: {{node.dateModified}}</p>
         {{#if node.tags}}
         <p>Tags:</p>
         <ul>
@@ -21,6 +21,7 @@
             {{/each}}
         </ul>
         {{/if}}
+<!--        {{contribs}}-->
         <br>
     </li>
 {{/each}}

@@ -4,7 +4,8 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     isNewSerializerAPI: true,
     
     attrs: {
-        tags: {embedded: 'always'}
+        tags: {embedded: 'always'},
+        contributors: {embedded: 'always'}
     },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
@@ -13,11 +14,11 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
         payload.data.map(function(record) {
             record.type = primaryModelClass.modelName;
             record.title = record.attributes.title;
-            record.dateCreated = record.attributes.date_created;
+            record.dateModified = record.attributes.date_modified;
             record.tags = record.attributes.tags;
+            console.log(record);
             normalizedRecords.push(record);
         });
-        
         var obj = {};
         obj[primaryModelClass.modelName] = normalizedRecords;
         obj.meta = payload.links.meta;
