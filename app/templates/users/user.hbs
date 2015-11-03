@@ -1,0 +1,8 @@
+<h3>This is a single user page</h3>
+<p>User name: {{model.fullName}}</p>
+<p>This user's nodes:</p>
+<ul>
+{{#each model.nodes as |node|}}
+    <li>{{#link-to 'nodes.node' node}}{{node.title}}{{/link-to}}</li>
+{{/each}}
+</ul>
