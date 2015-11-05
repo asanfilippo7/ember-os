@@ -6,9 +6,11 @@ export default DS.RESTSerializer.extend({
     },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
+        console.log("getting user array");
         var normalizedRecords = [];
     
         payload.data.map(function(record) {
+            console.log(record);
             record.type = primaryModelClass.modelName;
             record.fullName = record.attributes.full_name;
             record.givenName = record.attributes.given_name;
@@ -24,9 +26,8 @@ export default DS.RESTSerializer.extend({
     },
     
     normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
-        console.log("getting payload");
+        console.log("getting single user");
         payload.data.type = primaryModelClass.modelName;
-        console.log(payload);
         return payload;
     }
 });

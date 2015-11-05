@@ -7,6 +7,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
+        console.log("getting node array");
         var normalizedRecords = [];
     
         payload.data.map(function(record) {
@@ -25,8 +26,9 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     },
     
     normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
-        console.log("getting payload");
+        console.log("getting single node");
         payload.data.type = primaryModelClass.modelName;
+        console.log(payload);
         return payload;
     }
 });
