@@ -7,8 +7,8 @@
         <p>Last modified: {{node.dateModified}}</p>
         <ul>
         <h4>Contributors:</h4>
-            {{#each node.users as |user|}}
-                {{#link-to 'users.user' user}}<li>{{user.fullName}}</li>{{/link-to}}
+            {{#each node.contributors as |contributor|}}
+                {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
             {{/each}}
         </ul>
         <p>Filed under {{tagID}}</p>

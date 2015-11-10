@@ -3,8 +3,8 @@
 <p>Last modified: {{model.dateModified}}</p>
 <p>Contributors:</p>
 <ul>
-{{#each model.users as |user|}}
-    <li>{{#link-to 'users.user' user}}{{user.fullName}}{{/link-to}}</li>
+{{#each model.contributors as |contributor|}}
+    {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
 {{/each}}
 </ul>
 {{#link-to 'nodes.index'}}<p>Back to all nodes</p>{{/link-to}}

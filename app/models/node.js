@@ -4,5 +4,6 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   dateModified: DS.attr('date'),
     tags: DS.hasMany('tag'),
-    users: DS.hasMany('user', {async: true}) 
+    contributors: DS.hasMany('contributor', {async: true}),
+    users: DS.hasMany('user')
 });

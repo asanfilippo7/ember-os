@@ -1,5 +1,4 @@
 {{#if isFirstPage}}
-<!--<h3>Sort by: {{#link-to 'nodes.recent'}}Recent nodes{{/link-to}}</h3>-->
 {{/if}}
 
 <h3>Search by tag: {{input value=keyword action="search" on="enter"}}
@@ -14,14 +13,12 @@
     <li>
         {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
         <p>Last modified: {{node.dateModified}}</p>
-        {{#if node.users}}
-        <h4>Contributors:</h4>
+        <p>Contributors:</p>
         <ul>
-            {{#each node.users as |user|}}
-                {{#link-to 'users.user' user}}<li>{{user.fullName}}</li>{{/link-to}}
-            {{/each}}
+        {{#each node.contributors as |contributor|}}
+            {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
+        {{/each}}
         </ul>
-        {{/if}}
         {{#if node.tags}}
         <p>Tags:</p>
         <ul>
@@ -30,7 +27,6 @@
             {{/each}}
         </ul>
         {{/if}}
-<!--        {{contribs}}-->
         <br>
     </li>
 {{/each}}
