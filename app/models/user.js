@@ -5,5 +5,5 @@ export default DS.Model.extend({
     fullName: DS.attr('string'),
     givenName: DS.attr('string'),
     familyName: DS.attr('string'),
-    contributor: DS.belongsTo('contributor')
+    contributor: DS.belongsTo('contributor', {async: true})
 });

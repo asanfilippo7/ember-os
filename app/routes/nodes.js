@@ -7,6 +7,7 @@ export default Ember.Route.extend({
         }
     },
     model: function(params) {
+        console.log('nodes route running');
         var query = {};
         
         if(Ember.isPresent(params.page)) {
