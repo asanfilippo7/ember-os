@@ -15,7 +15,8 @@ export default DS.RESTSerializer.extend({
             record.givenName = record.attributes.given_name;
             record.familyName = record.attributes.family_name;
             delete record.attributes;
-            //            Weird stuff going on here: Use a links object for async data in array response...
+            
+            //Weird stuff going on here: Use a links object for async data in array response...
             record.links.nodes = record.relationships.nodes.links.related.href;
             delete record.relationships;
             console.log(record);
@@ -35,6 +36,7 @@ export default DS.RESTSerializer.extend({
         var fn = payload.data.attributes.full_name;
         var gn = payload.data.attributes.given_name;
         var fmn = payload.data.attributes.family_name;
+        
 //        ...but a relationships object for async data in a single response
         var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href}}};
         var obj = {id: objID, type: "user", attributes: {fullName: fn, givenName: gn, familyName: fmn}, relationships: rltns};
@@ -48,6 +50,7 @@ export default DS.RESTSerializer.extend({
         var fn = payload.data.attributes.full_name;
         var gn = payload.data.attributes.given_name;
         var fmn = payload.data.attributes.family_name;
+        
 //        ...but a relationships object for async data in a single response
         var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href}}};
         var obj = {id: objID, type: "user", attributes: {fullName: fn, givenName: gn, familyName: fmn}, relationships: rltns};

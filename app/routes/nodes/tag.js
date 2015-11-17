@@ -21,13 +21,3 @@ export default Ember.Route.extend({
         controller.set('tagID', model.query.filter.tags);
     }
 });
-
-//    model:function(params) {
-//        console.log('tag route running');
-//        return this.store.query('node', {filter: {tags: params.tag_id}});
-//    },
-//    setupController: function(controller, model) {
-//        var tagID = model.query.filter.tags;
-//        controller.set('tagID', tagID);
-//        controller.set('model', model);
-//    }

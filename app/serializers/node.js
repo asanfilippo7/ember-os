@@ -15,9 +15,12 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
             record.dateModified = record.attributes.date_modified;
             record.tags = record.attributes.tags;
             delete record.attributes;
-//            Weird stuff going on here: Use a links object for async data in array response...
+            
+            //Weird stuff going on here: Use a links object for async data in array response...
+            //Also strange: tags can be directly loaded in an array response, but must be sideloaded in a single record response...
             record.links.contributors = record.relationships.contributors.links.related.href;
             delete record.relationships;
+            
             normalizedRecords.push(record);
         });
         var obj = {};
@@ -29,14 +32,23 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     
     normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
         console.log("getting single node from store");
+        
         var objID = payload.data.id;
         var tl = payload.data.attributes.title;
         var dm = payload.data.attributes.date_modified;
-        var tgs = payload.data.attributes.tags;
-//        ...but a relationships object for async data in a single response
-        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}};
-        var obj = {id: objID, type: "node", attributes: {title: tl, dateModified: dm, tags: tgs}, relationships: rltns};
+        
+        //...but a relationships object for async data in a single response
+        //ALSO: side-load tags in a single response (put them in the relationship and included) with tags as async: false hasMany         
+        var normalizedTagArray = [];
+        payload.data.attributes.tags.map(function(t) {
+            var nt = {type: "tag", id: t};
+            normalizedTagArray.push(nt);
+        });
+        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}, "tags": {"data": normalizedTagArray}};
+        
+        var obj = {id: objID, type: "node", attributes: {title: tl, dateModified: dm}, relationships: rltns};
         payload.data = obj;
+        payload.included = normalizedTagArray;
         console.log(payload);
         return payload;
     },
@@ -46,11 +58,19 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
         var objID = payload.data.id;
         var tl = payload.data.attributes.title;
         var dm = payload.data.attributes.date_modified;
-        var tgs = payload.data.attributes.tags;
-//        ...but a relationships object for async data in a single response
-        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}};
-        var obj = {id: objID, type: "node", attributes: {title: tl, dateModified: dm, tags: tgs}, relationships: rltns};
+        
+        //...but a relationships object for async data in a single response
+        //ALSO: side-load tags in a single response (put them in the relationship and included) with tags as async: false hasMany 
+         var normalizedTagArray = [];
+        payload.data.attributes.tags.map(function(t) {
+            var nt = {type: "tag", id: t};
+            normalizedTagArray.push(nt);
+        });
+        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}, "tags": {"data": normalizedTagArray}};
+        
+        var obj = {id: objID, type: "node", attributes: {title: tl, dateModified: dm}, relationships: rltns};
         payload.data = obj;
+        payload.included = normalizedTagArray;
         return payload;
     }
 });

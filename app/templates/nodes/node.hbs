@@ -7,5 +7,13 @@
     {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
 {{/each}}
 </ul>
+{{#if model.tags}}
+<p>Tags:</p>
+<ul>
+{{#each model.tags as |tag|}}
+    {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+{{/each}}
+</ul>
+{{/if}}
 {{#link-to 'nodes.index'}}<p>Back to all nodes</p>{{/link-to}}
 

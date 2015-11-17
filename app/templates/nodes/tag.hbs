@@ -5,8 +5,8 @@
        
         {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
         <p>Last modified: {{node.dateModified}}</p>
-        <ul>
         <h4>Contributors:</h4>
+        <ul>
             {{#each node.contributors as |contributor|}}
                 {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
             {{/each}}
@@ -35,11 +35,3 @@
 {{/unless}}
 <br>
 {{#link-to 'nodes'}}Return to all nodes{{/link-to}}
-
-<!--
-        <ul>
-            {{#each node.tags as |tag|}}
-                {{#link-to 'nodes.tag' tag}}<li>{{tag.id}}</li>{{/link-to}}
-            {{/each}}
-        </ul>
--->
