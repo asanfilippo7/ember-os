@@ -1,0 +1,38 @@
+<h3>Page {{pg}} of search for users </h3>
+
+<ul>
+{{#each model as |user|}}
+    <li>
+       
+        {{#link-to 'users.user' user}}<h3>{{user.fullName}}</h3>{{/link-to}}
+        {{#if user.nodes}}
+        <p>This user's nodes:</p>
+        <ul>
+            {{#each user.nodes as |node|}}
+                <li>{{#link-to 'nodes.node' node}}{{node.title}}{{/link-to}}</li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </li>
+    <br>
+{{/each}}
+</ul>
+
+{{#unless model}}
+    <p>No users with that name!</p>
+{{/unless}}
+
+<h3>Navigation:</h3>
+{{#unless isFirstPage}}
+    {{#link-to (query-params pg=prevPage)}}Previous{{/link-to}}
+{{/unless}}
+
+{{#each PageRange as |num|}}
+    {{#link-to (query-params pg=num)}}{{num}}{{/link-to}}
+{{/each}}
+
+{{#unless isLastPage}}
+    {{#link-to (query-params pg=nextPage)}}Next{{/link-to}}
+{{/unless}}
+<br>
+{{#link-to 'nodes' (query-params page=1)}}Return to all nodes{{/link-to}}

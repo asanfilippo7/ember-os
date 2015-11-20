@@ -15,8 +15,9 @@ Router.map(function() {
 //    this.route('recent', {path: '/recent'});
     this.route('title', {path: 'title/:title_id'});
   });
-  this.route('users', {path: '/users'}, function() {
+  this.route('users', function() {
     this.route('user', {path: '/user/:user_id'});
+    this.route('name', {path: '/name/:name_id'});
   });
 });
 

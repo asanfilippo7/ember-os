@@ -33,7 +33,7 @@ export default Ember.Route.extend({
                 this.transitionTo('nodes.title', keyword, {queryParams: {page: 1}});
             } else if(toSearch == 3) {
                 console.log('searching by contributor');
-                this.transitionTo('nodes.tag', keyword);
+                this.transitionTo('users.name', keyword, {queryParams: {page: 1}});
             } else {
                 return;
             }
