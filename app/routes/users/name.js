@@ -18,6 +18,6 @@ export default Ember.Route.extend({
         this._super.apply(this, arguments);
         var totalPages = Math.ceil(model.meta.total/model.meta.per_page);
         controller.set('totalPages', totalPages);
-//        controller.set('tagID', model.query.filter.tags);
+        controller.set('nameID', model.query.filter.full_name);
     }
 });
