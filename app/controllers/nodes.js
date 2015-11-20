@@ -9,6 +9,9 @@ export default Ember.Controller.extend({
     
     totalPages: null,
     
+    keyword: '',
+//    toSearch: '',
+    
     prevPage: function() {
         return this.get('page') - 1;
     }.property('page'),

@@ -15,5 +15,10 @@
 {{/each}}
 </ul>
 {{/if}}
+
+{{#unless model}}
+    <p>No nodes with that title!</p>
+{{/unless}}
+
 {{#link-to 'nodes.index'}}<p>Back to all nodes</p>{{/link-to}}
 

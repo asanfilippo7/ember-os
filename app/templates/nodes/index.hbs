@@ -1,8 +1,15 @@
 {{#if isFirstPage}}
 {{/if}}
 
-<h3>Search by tag: {{input value=keyword action="search" on="enter"}}
-</h3>
+<h3>Search by: 
+{{#x-select value=0 action="selectSearch"}}
+    <option value=0>Select</option>
+    {{#x-option value=1}}Tag{{/x-option}}
+  {{#x-option value=2}}Title{{/x-option}}
+{{#x-option value=3}}Contributor{{/x-option}}
+{{/x-select}}</h3>
+
+<h3>Search term: {{input value=keyword enter="search"}}</h3>
 
 {{#unless isFirstPage}}
 <h3>Page {{page}} of all nodes</h3>
