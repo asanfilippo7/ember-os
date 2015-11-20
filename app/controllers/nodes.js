@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
     queryParams: [
-        'page',
+        'page'
     ],
     
     page: 1,
@@ -10,7 +10,6 @@ export default Ember.Controller.extend({
     totalPages: null,
     
     keyword: '',
-//    toSearch: '',
     
     prevPage: function() {
         return this.get('page') - 1;

@@ -24,20 +24,18 @@ export default Ember.Route.extend({
         selectSearch: function(value, component, toSearch) {
             this.toSearch = value; //create a new property on the route object to store the search value
         },
-        search: function(keyword) {
-            
+        search: function(keyword) {  
             var toSearch = this.toSearch;
             if(toSearch == 1) {
                 console.log('searching by tag');
-                this.replaceWith('nodes.tag', keyword);
-//            } else if(toSearch == 2) {
-//                console.log('searching by title');
-//                this.transitionTo('nodes.node', keyword);
-//            } else if(toSearch == 3) {
-//                console.log('searching by contributor');
-////                this.transitionTo('nodes.tag', keyword);
-//            } else {
-//                return;
+                this.transitionTo('nodes.tag', keyword, {queryParams: {page: 1}});
+            } else if(toSearch == 2) {
+                this.transitionTo('nodes.title', keyword, {queryParams: {page: 1}});
+            } else if(toSearch == 3) {
+                console.log('searching by contributor');
+                this.transitionTo('nodes.tag', keyword);
+            } else {
+                return;
             }
         }
     }

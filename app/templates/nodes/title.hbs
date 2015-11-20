@@ -1,5 +1,5 @@
 
-<h3>Page {{pg}} of all nodes tagged {{tagID}}</h3>
+<h3>Page {{pg}} of search for nodes with title {{titleID}}</h3>
 
 <ul>
 {{#each model as |node|}}
@@ -20,7 +20,7 @@
 </ul>
 
 {{#unless model}}
-    <p>No nodes with that tag!</p>
+    <p>No nodes with that title!</p>
 {{/unless}}
 
 <h3>Navigation:</h3>

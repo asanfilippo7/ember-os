@@ -18,7 +18,8 @@
 <ul>
 {{#each model as |node|}}
     <li>
-        {{#link-to 'nodes.node' node}}<h3>{{node.title}}</h3>{{/link-to}}
+<!--                remove query params as you go to a single model page-->
+        {{#link-to 'nodes.node' node (query-params page=1)}}<h3>{{node.title}}</h3>{{/link-to}}
         <p>Last modified: {{node.dateModified}}</p>
         <p>Contributors:</p>
         <ul>
@@ -30,7 +31,8 @@
         <p>Tags:</p>
         <ul>
             {{#each node.tags as |tag|}}
-                {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
+<!--                remove query params as you go to a single model page-->
+                {{#link-to 'nodes.tag' tag.id (query-params page=1)}}<li>{{tag.id}}</li>{{/link-to}}
             {{/each}}
         </ul>
         {{/if}}
