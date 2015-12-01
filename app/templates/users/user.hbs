@@ -1,9 +1,17 @@
 <h3>This is a single user page</h3>
 <p>User name: {{model.fullName}}</p>
+{{#if model.nodes}}
 <p>This user's nodes:</p>
 <ul>
 {{#each model.nodes as |node|}}
     <li>{{#link-to 'nodes.node' node}}{{node.title}}{{/link-to}}</li>
 {{/each}}
 </ul>
+{{/if}}
 {{#link-to 'nodes.index' (query-params page=1)}}<p>Back to all nodes</p>{{/link-to}}
+
+<!--
+{{#if modelIsAnna}}
+<p>It's Anna!</p>
+Change her name: {{input value=newName enter="reName"}}
+{{/if}}-->
