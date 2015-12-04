@@ -16,6 +16,24 @@
 </ul>
 {{/if}}
 
+{{#if model.comments}}
+<h4>Comments:</h4>
+<ul>
+{{#each model.comments as |comment|}}
+    <li><strong>Comment from {{comment.user.fullName}} on {{comment.dateCreated}}:</strong> {{comment.content}}</li>
+    <br>
+    {{#if comment.replies}}
+        <ul>
+            {{#each comment.replies as |reply|}}
+            <li>Reply from {{reply.user.fullName}} on {{reply.dateCreated}}: {{reply.content}}</li>
+            <br>
+            {{/each}}
+        </ul>
+    {{/if}}
+{{/each}}
+</ul>
+{{else}}<h4>No comments for this node.</h4>{{/if}}
+
 {{#unless model}}
     <p>No nodes with that title!</p>
 {{/unless}}

@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend({
     attrs: {
-        user: {embedded: 'always'}
+//        user: {embedded: 'always'}
     },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {

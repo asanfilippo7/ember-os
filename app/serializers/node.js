@@ -3,7 +3,7 @@ import DS from 'ember-data';
 export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
     attrs: {
         tags: {embedded: 'always'},
-        contributors: {embedded: 'always'}
+//        contributors: {embedded: 'always'}
     },
     
     normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {
@@ -20,6 +20,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
             //Weird stuff going on here: Use a links object for async data in array response...
             //Also strange: tags can be directly loaded in an array response, but must be sideloaded in a single record response...
             record.links.contributors = record.relationships.contributors.links.related.href;
+            record.links.comments = record.relationships.comments.links.related.href;
             delete record.relationships;
             
             normalizedRecords.push(record);
@@ -46,7 +47,7 @@ export default DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
             var nt = {type: "tag", id: t};
             normalizedTagArray.push(nt);
         });
-        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}, "tags": {"data": normalizedTagArray}};
+        var rltns = {"contributors": {"links": {"related": payload.data.relationships.contributors.links.related.href}}, "comments": {"links": {"related": payload.data.relationships.comments.links.related.href}}, "tags": {"data": normalizedTagArray}};
         
         var obj = {id: objID, type: "node", attributes: {title: tl, dateModified: dm}, relationships: rltns};
         payload.data = obj;
