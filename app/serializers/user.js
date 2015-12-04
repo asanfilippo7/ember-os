@@ -17,7 +17,7 @@ export default DS.RESTSerializer.extend({
             delete record.attributes;
             
             //Weird stuff going on here: Use a links object for async data in array response...
-            record.links.nodes = record.relationships.nodes.links.related.href;
+            record.links.nodes = record.relationships.nodes.links.related.href + '?filter[category]=project';
             delete record.relationships;
             console.log(record);
             normalizedRecords.push(record);
@@ -38,7 +38,7 @@ export default DS.RESTSerializer.extend({
         var fmn = payload.data.attributes.family_name;
         
 //        ...but a relationships object for async data in a single response
-        var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href}}};
+        var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href + '?filter[category]=project'}}};
         var obj = {id: objID, type: "user", attributes: {fullName: fn, givenName: gn, familyName: fmn}, relationships: rltns};
         payload.data = obj;
         return payload;
@@ -52,7 +52,7 @@ export default DS.RESTSerializer.extend({
         var fmn = payload.data.attributes.family_name;
         
 //        ...but a relationships object for async data in a single response
-        var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href}}};
+        var rltns = {"nodes": {"links": {"related": payload.data.relationships.nodes.links.related.href + '?filter[category]=project'}}};
         var obj = {id: objID, type: "user", attributes: {fullName: fn, givenName: gn, familyName: fmn}, relationships: rltns};
         payload.data = obj;
         console.log(payload);

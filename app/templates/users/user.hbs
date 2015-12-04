@@ -3,7 +3,7 @@
 <p>This user's nodes:</p>
 <ul>
 {{#each model.nodes as |node|}}
-    <li>{{#link-to 'nodes.node' node}}{{node.title}}{{/link-to}}</li>
+    <li>{{#link-to 'nodes.node' node}}{{node.title}}{{/link-to}}, {{node.category}}</li>
 {{/each}}
 </ul>
 {{#link-to 'nodes.index' (query-params page=1)}}<p>Back to all nodes</p>{{/link-to}}

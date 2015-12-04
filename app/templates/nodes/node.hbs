@@ -7,6 +7,7 @@
     {{#link-to 'users.user' contributor.user.id}}<li>{{contributor.user.fullName}}</li>{{/link-to}}
 {{/each}}
 </ul>
+
 {{#if model.tags}}
 <p>Tags:</p>
 <ul>
@@ -14,6 +15,19 @@
     {{#link-to 'nodes.tag' tag.id}}<li>{{tag.id}}</li>{{/link-to}}
 {{/each}}
 </ul>
+{{/if}}
+
+{{#if model.children}}
+<h4>Child Nodes:</h4>
+<ul>
+    {{#each model.children as |child|}}
+        <li>{{#link-to 'nodes.node' child.id}}{{child.title}}{{/link-to}}, {{child.category}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+
+{{#if model.parent}}
+<p><strong>Parent node:</strong> {{#link-to 'nodes.node' model.parent.id}}{{model.parent.title}}{{/link-to}}</p>
 {{/if}}
 
 {{#if model.comments}}

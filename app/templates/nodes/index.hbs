@@ -20,6 +20,11 @@
     <li>
 <!--                remove query params as you go to a single model page-->
         {{#link-to 'nodes.node' node (query-params page=1)}}<h3>{{node.title}}</h3>{{/link-to}}
+        <p>Category: {{node.category}}</p>
+<!--
+        {{#if node.children}}<p>I have children!</p>{{/if}}
+        {{#if node.parent}}<p>I have a parent!</p>{{/if}}
+-->
         <p>Last modified: {{node.dateModified}}</p>
         <p>Contributors:</p>
         <ul>

@@ -13,7 +13,8 @@ export default Ember.Route.extend({
         if(Ember.isPresent(params.page)) {
             query.page = params.page;
         }
-        return this.get('store').query('node', query);
+        //for the list display of all nodes, filter out all non-projects
+        return this.get('store').query('node', {filter: {category: 'project'}}, query);
     },
     setupController: function(controller, model) {
         this._super.apply(this, arguments);

@@ -13,7 +13,7 @@ export default Ember.Route.extend({
         if(Ember.isPresent(params.pg)) {
             query.page = params.pg;
         }
-        return this.get('store').query('node', {filter: {tags: params.tag_id}, page: query.page});
+        return this.get('store').query('node', {filter: {tags: params.tag_id,}, page: query.page});
     },
     setupController: function(controller, model) {
         this._super.apply(this, arguments);
