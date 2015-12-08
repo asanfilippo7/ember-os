@@ -9,5 +9,5 @@ export default DS.Model.extend({
     users: DS.hasMany('user'),
     comments: DS.hasMany('comment', {async: true}),
     children: DS.hasMany('node', {async: true, inverse: 'parent'}),
-    parent: DS.belongsTo('node', {async: true})
+    parent: DS.belongsTo('node', {async: true, inverse: 'children'})
 });

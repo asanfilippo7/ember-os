@@ -14,7 +14,7 @@ export default Ember.Route.extend({
             query.page = params.page;
         }
         //for the list display of all nodes, filter out all non-projects
-        return this.get('store').query('node', {filter: {category: 'project'}}, query);
+        return this.get('store').query('node', {filter: {category: 'project'}, page: query.page});
     },
     setupController: function(controller, model) {
         this._super.apply(this, arguments);
